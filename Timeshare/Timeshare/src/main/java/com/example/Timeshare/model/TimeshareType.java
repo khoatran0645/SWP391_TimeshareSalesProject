@@ -37,6 +37,6 @@ public class TimeshareType {
     public void setName(String name) {
         Name = name;
     }
-    @OneToMany(mappedBy = "timeshareType", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "typeID", cascade = CascadeType.ALL)
     private Collection<Timeshare> timeshares;
 }

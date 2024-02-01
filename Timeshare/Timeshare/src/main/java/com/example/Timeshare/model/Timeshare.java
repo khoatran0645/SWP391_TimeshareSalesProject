@@ -1,6 +1,7 @@
 package com.example.Timeshare.model;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.sql.Date;
 @Entity
@@ -8,28 +9,35 @@ import java.sql.Date;
 public class Timeshare {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private String TimeshareID;
     @Column(name = "Name")
+    @NotNull
     private String Name;
     @Column(name = "Description")
     private String Description;
     @Column(name = "Area")
+    @NotNull
     private String Area;
     @Column(name = "PricePerSquare")
+    @NotNull
     private float PricePerSquare;
     @Column(name = "ImageLink")
     private String ImageLink;
     @Column(name = "Status")
+    @NotNull
     private String Status;
     @ManyToOne
     @JoinColumn(name = "ProjectID")
+    @NotNull
     private Project projectID;
     @ManyToOne
-    @JoinColumn(name = "SubdivisionID")
+    @JoinColumn(name = "subdivisionid", nullable = false, foreignKey = @ForeignKey(name = "fk_subdivision"))
     private Subdivision subdivisionID;
     @ManyToOne
     @JoinColumn(name = "TypeID")
-    private TimeshareType timeshareType;
+    @NotNull
+    private TimeshareType typeID;
     @Column(name = "IsOpenningForSale")
     private boolean IsOpenningForSale;
     @Column(name = "Create_date")
@@ -38,7 +46,7 @@ public class Timeshare {
     public Timeshare() {
     }
 
-    public Timeshare(String timeshareID, String name, String description, String area, float pricePerSquare, String imageLink, String status, Project projectID, Subdivision subdivisionID, TimeshareType timeshareType, boolean isOpenningForSale, Date create_date) {
+    public Timeshare(String timeshareID, String name, String description, String area, float pricePerSquare, String imageLink, String status, Project projectID, Subdivision subdivisionID, TimeshareType typeID, boolean isOpenningForSale, Date create_date) {
         TimeshareID = timeshareID;
         Name = name;
         Description = description;
@@ -48,7 +56,7 @@ public class Timeshare {
         Status = status;
         this.projectID = projectID;
         this.subdivisionID = subdivisionID;
-        this.timeshareType = timeshareType;
+        this.typeID = typeID;
         IsOpenningForSale = isOpenningForSale;
         Create_date = create_date;
     }
@@ -126,11 +134,11 @@ public class Timeshare {
     }
 
     public TimeshareType getTimeshareType() {
-        return timeshareType;
+        return typeID;
     }
 
-    public void setTimeshareType(TimeshareType timeshareType) {
-        this.timeshareType = timeshareType;
+    public void setTimeshareType(TimeshareType typeID) {
+        this.typeID = typeID;
     }
 
     public boolean isOpenningForSale() {

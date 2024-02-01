@@ -1,6 +1,7 @@
 package com.example.Timeshare.model;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.sql.Date;
 import java.util.Collection;
@@ -10,8 +11,10 @@ import java.util.Collection;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String ProjectID;
+    @NotNull
+    private int ProjectID;
     @Column(name = "Name")
+    @NotNull
     private String Name;
     @Column(name = "Description")
     private String Description;
@@ -25,7 +28,7 @@ public class Project {
     public Project() {
     }
 
-    public Project(String projectID, String name, String description, String location, String imageLink, Date create_date) {
+    public Project(int projectID, String name, String description, String location, String imageLink, Date create_date) {
         ProjectID = projectID;
         Name = name;
         Description = description;
@@ -34,11 +37,11 @@ public class Project {
         Create_date = create_date;
     }
 
-    public String getProjectID() {
+    public int getProjectID() {
         return ProjectID;
     }
 
-    public void setProjectID(String projectID) {
+    public void setProjectID(int projectID) {
         ProjectID = projectID;
     }
 
