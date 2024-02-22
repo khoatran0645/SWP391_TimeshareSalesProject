@@ -10,6 +10,7 @@ import { Detail } from "./pages/Detail";
 import { Intro } from "./pages/Introduction";
 import { More } from "./pages/More";
 import { AppLayout } from "./layouts/AppLayout";
+import Payment from "./pages/Payment/Payment";
 
 function App() {
 
@@ -31,6 +32,10 @@ function App() {
           <Route
             path="more"
             element={<More />}
+          />
+          <Route
+            path="payment"
+            element={<Payment />}
           />
         </Route>
       </Route>

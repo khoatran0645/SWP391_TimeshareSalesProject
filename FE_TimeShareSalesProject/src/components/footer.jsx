@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 
 export const Footer = () => (
-  <>
+  <>  
     <div className="bg-black text-white p-20 flex items-center">
       <div className="w-1/3 px-10 text-center">
         <div className="font-medium text-2xl">Công ty TNHH Khu du lịch</div>

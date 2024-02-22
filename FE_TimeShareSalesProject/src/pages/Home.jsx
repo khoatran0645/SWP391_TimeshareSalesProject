@@ -1,9 +1,9 @@
+
 import city from "../assets/images/city.png";
 import img1 from "../assets/images/image 1.png";
 import { data1 } from "../data/data";
 export const Home = () => (
-  <>
-    <div>
+    <>
       <img src={city} className="w-full" />
       <div className="flex mt-20 mb-10 px-20 justify-between">
         {data1.map((data) => (
@@ -24,6 +24,5 @@ export const Home = () => (
           <img src={img1} className=" w-full m-auto" />
         </div>
       </div>
-    </div>
-  </>
+    </>
 );

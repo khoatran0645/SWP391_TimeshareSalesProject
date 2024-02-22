@@ -1,45 +1,59 @@
-import { Icon } from "@iconify/react";
-import logo from "../assets/images/TimeShare.png";
+import { Button, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { AppBar, Box } from "@mui/material";
+import { useState } from "react";
+import MenuIcon from '@mui/icons-material/Menu';
+import logo from "../assets/images/TimeShare.png";
 
 export const Header = () => {
-  const toggleMenu = () => {
-    const menu = document.getElementById("menu");
-    if (menu.classList.contains("hidden")) {
-      menu.classList.remove("hidden");
-    } else {
-      menu.classList.add("hidden");
-    }
-  };
-  return (
-    <>
-      <div className="flex items-center justify-between p-10">
-        <div onClick={toggleMenu} className="border p-5 relative">
-          <div>
-            <Icon icon="material-symbols:menu" />
-          </div>
+  const [anchorEl, setAnchorEl] = useState(null);
 
-          <div
-            className="w-52 px-10 py-5 bg-white hidden border absolute"
-            id="menu"
-          >
-            <Link to={"/"} className="block py-5">
-              Trang chủ
+  const toggleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <AppBar color="inherit" position="static" sx={{ display: "flex" }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Box sx={{m: 2}}>
+            <IconButton onClick={toggleMenu}>
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>
+                <Link to={"/"}>Trang chủ</Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link to={"/introduction"}>Giới thiệu timeshare</Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link to={"/more"}>Giới thiệu tiện ích</Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link to={"/detail/S1.112305"}>Bán Timeshare</Link>
+              </MenuItem>
+            </Menu>
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "center", flexGrow: 1 }}>
+          <Link to={"/"}>
+            <img src={logo} style={{ width: "120px", height: "auto" }} />
             </Link>
-            <Link to={"/introduction"} className="block py-5">
-              Giới thiệu timeshare
-            </Link>
-            <Link to={"/more"} className="block py-5">
-              Giới thiệu tiện ích
-            </Link>
-            <Link to={"/detail/S1.112305"} className="block py-5">
-              Bán Timeshare
-            </Link>
-          </div>
-        </div>
-        <img className="w-2/12" src={logo} />
-        <div></div>
-      </div>
-    </>
+          </Box>
+          <Box>
+            <Button variant="contained" sx={{ m: 1 }}>Login</Button>
+            <Button variant="contained" sx={{ m: 1 }}>Signin</Button>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 };

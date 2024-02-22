@@ -30,7 +30,7 @@ function Copyright() {
   );
 }
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Thông tin liên lạc', 'Thanh Toán', 'Kiểm tra lại thông tin'];
 
 function getStepContent(step) {
   switch (step) {
